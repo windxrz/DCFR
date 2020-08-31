@@ -10,18 +10,18 @@ DCFR is an adversarial learning method to deal with fairness issues in supervise
 - `pip install -r requirements.txt`
 
 ## Quick Start
-### Run with single fair coefficient and random seed
+### Run for single fair coefficient and random seed
 Run DCFR model on Adult income dataset and conditional fairness task with fair coefficient 20.
 ```bash
 python main.py --model DCFR --task CF --dataset adult --seed 0 --fair-coeff 20
 ```
-For more options, you can see help from
+You can see more options from
 ```bash
 python main.py -h
 ```
 Result files will be saved in `results/`. Saved models will be saved in `saved/`. Tensorboard logs will be saved in `tensorboard/`.
 
-### Run with multiple fair coefficients and random seeds
+### Run for multiple fair coefficients and random seeds
 Run DCFR model on Adult income dataset and conditional fairness task.
 ```bash
 bash scripts/dcfr.bash
