@@ -1,0 +1,36 @@
+{
+    "adult": {
+        "fair_coeff": 1.0,
+        "batch_size": 512,
+        "lr": 1.0,
+        "epoch": 400,
+        "aud_steps": 10,
+        "optim": "Adadelta",
+        "xdim": 113,
+        "zdim": 60,
+        "ydim": 1,
+        "sdim": 1,
+        "encoder": [],
+        "prediction": [],
+        "audit": [
+            50
+        ]
+    },
+    "compas": {
+        "fair_coeff": 1.0,
+        "batch_size": 256,
+        "lr": 1.0,
+        "epoch": 400,
+        "aud_steps": 5,
+        "optim": "Adadelta",
+        "xdim": 11,
+        "zdim": 8,
+        "ydim": 1,
+        "sdim": 1,
+        "encoder": [],
+        "prediction": [],
+        "audit": [
+            8
+        ]
+    }
+}
