@@ -50,6 +50,7 @@ class StandardDataset:
             )
             df.loc[pos, protected_attribute_name] = 1
             df.loc[~pos, protected_attribute_name] = 0
+            df[protected_attribute_name] = df[protected_attribute_name].astype(int)
 
             # set binary labels
             pos = np.logical_or.reduce(
@@ -57,6 +58,7 @@ class StandardDataset:
             )
             df.loc[pos, "result"] = 1
             df.loc[~pos, "result"] = 0
+            df["result"] = df["result"].astype(int)
 
             result.append(df)
 
