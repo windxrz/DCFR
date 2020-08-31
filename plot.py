@@ -146,6 +146,8 @@ def plot_pareto_front(cols, colors, pareto=True):
             if j == 0:
                 axes[i][j].set_ylabel("Accuracy")
     output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results")
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir)
     if pareto:
         filename = "pareto"
     else:
