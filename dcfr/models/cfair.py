@@ -15,12 +15,8 @@ class CFair(FairRepr):
             [config["zdim"]] + config["prediction"] + [config["ydim"]],
             "relu",
         )
-        self.audit1 = MLP(
-            [config["zdim"]] + config["audit"] + [config["sdim"]], "relu"
-        )
-        self.audit2 = MLP(
-            [config["zdim"]] + config["audit"] + [config["sdim"]], "relu"
-        )
+        self.audit1 = MLP([config["zdim"]] + config["audit"] + [config["sdim"]], "relu")
+        self.audit2 = MLP([config["zdim"]] + config["audit"] + [config["sdim"]], "relu")
 
     def forward_y(self, x):
         z = self.forward_z(x)
@@ -88,10 +84,7 @@ class CFair(FairRepr):
         self.encoder.freeze()
 
     def predict_params(self):
-        return (
-            list(self.prediction.parameters())
-            + list(self.encoder.parameters())
-        )
+        return list(self.prediction.parameters()) + list(self.encoder.parameters())
 
     def audit_params(self):
         return list(self.audit1.parameters()) + list(self.audit2.parameters())
