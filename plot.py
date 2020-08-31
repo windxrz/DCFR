@@ -58,7 +58,10 @@ def calculate_pareto_front(x, y):
 
 
 def plot_pareto_front(cols, colors, pareto=True):
-    print("Plotting pareto front")
+    if pareto:
+        print("Plotting the pareto front")
+    else:
+        print("Plotting the scatter diagram")
     plt.clf()
     datasets = []
     for name in os.listdir(
@@ -66,6 +69,9 @@ def plot_pareto_front(cols, colors, pareto=True):
     ):
         if "." not in name:
             datasets.append(name)
+    if len(datasets) == 0:
+        print("You have not run any models!")
+        return
     fig, axes = plt.subplots(
         len(datasets), 3, figsize=(len(cols) * 5, len(datasets) * 5)
     )
@@ -92,6 +98,7 @@ def plot_pareto_front(cols, colors, pareto=True):
             if "DCFR" in model_list:
                 model_list.remove("DCFR")
             model_list = ["DCFR"] + model_list
+            pl = False
             for model in model_list:
                 x = res.loc[
                     (res["model"] == model) & (res["task"].str.contains(col)), [col]
@@ -108,6 +115,7 @@ def plot_pareto_front(cols, colors, pareto=True):
                     line = "--"
                     linewidth = 2
                 if len(x) > 1:
+                    pl = True
                     if pareto:
                         x, y = calculate_pareto_front(
                             x.values.reshape(-1), y.values.reshape(-1)
@@ -127,7 +135,8 @@ def plot_pareto_front(cols, colors, pareto=True):
                             label=model,
                             color=colors[model],
                         )
-                else:
+                elif len(x) == 1:
+                    pl = True
                     axes[i][j].scatter(
                         x,
                         y,
@@ -136,7 +145,8 @@ def plot_pareto_front(cols, colors, pareto=True):
                         marker="^",
                         s=80,
                     )
-            axes[i][j].legend()
+            if pl:
+                axes[i][j].legend()
             if "adult" in dataset:
                 dataset_name = "Adult"
             elif "compas" in dataset:
