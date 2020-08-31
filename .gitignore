@@ -1,3 +1,4 @@
 saved/
 tensorboard/
-results/
+results/*
+!results/.gitkeep
