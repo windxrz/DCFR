@@ -5,6 +5,6 @@ for seed in {0..4}
 do
     for fair in "${coeff[@]}"
     do
-        python ../main.py --model CFAIR --fair-coeff $fair --seed $seed --dataset $dataset --task DP
+        python main.py --model CFAIR --fair-coeff $fair --seed $seed --dataset $dataset --task DP
     done
 done

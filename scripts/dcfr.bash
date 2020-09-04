@@ -6,6 +6,6 @@ for seed in {0..4}
 do
     for fair in "${coeff[@]}"
     do
-        python ../main.py --model DCFR --fair-coeff $fair --seed $seed --dataset $dataset --task $task
+        python main.py --model DCFR --fair-coeff $fair --seed $seed --dataset $dataset --task $task
     done
 done
